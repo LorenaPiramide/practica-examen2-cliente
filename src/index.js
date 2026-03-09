@@ -1,5 +1,5 @@
-import { login } from "./peticiones";
-import { obtenerLibrosDisponibles } from "./peticiones";
+import { login } from "./peticiones.js";
+import { obtenerLibrosDisponibles } from "./peticiones.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     // Guardamos el error del login en una constante.
