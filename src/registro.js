@@ -66,7 +66,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
         email.classList.remove("resaltado");
         errorEmail.innerText = "";
-        
+        return true;
+    }
+
+    // TODO: Cuidado con valorEmail e email!!!!!
+    function validarRepetirEmail(repetirEmail) {
+        const errorRepetirEmail = document.getElementById("errorRepetirEmail");
+        const valorEmail = email.value;
+        const valorRepetirEmail = repetirEmail.value;
+
+        if (valorEmail !== valorRepetirEmail) {
+            repetirEmail.classList.add("resaltado");
+            errorRepetirEmail.innerText = "Los emails no coinciden.";
+            return false;
+        } else if (!valorRepetirEmail) {
+            repetirEmail.classList.add("resaltado");
+            errorRepetirEmail.innerHTML = "Debes repetir el email";
+            return false;
+        }
+
+        repetirEmail.classList.remove("resaltado");
+        errorRepetirEmail.innerText = "";
+        return true;
+    }
+
+    function validarPassword(password) {
+        const errorPassword = document.getElementById("errorPassword");
+        const valor = password.value;
+        const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/
+
+        if (!regex.test(valor)) {
+            password.classList.add("resaltado");
+            errorPassword.innerText = "Contraseña no válida.";
+            return false;
+        }
+
+        password.classList.remove("resaltado");
+        errorPassword.innerText = "";
+        return true;
+    }
+
+    function validarRepetirPassword(repetirPassword) {
+        const errorRepetirPassword = document.getElementById("errorRepetirPassword");
+        const valorPassword = password.value;
+        const valorRepetirPassword = repetirPassword.value;
+
+        if (valorPassword !== valorRepetirPassword) {
+            repetirPassword.classList.add("resaltado");
+            errorRepetirPassword.innerText = "Las contraseñas no coinciden.";
+            return false;
+        } else if (!valorRepetirPassword) {
+            repetirPassword.classList.add("resaltado");
+            errorRepetirPassword.innerText = "Debes repetir la contraseña.";
+            return false;
+        }
+
+        repetirPassword.classList.remove("resaltado");
+        errorRepetirPassword.innerText = "";
+        return true;
+    }
+
+    function validarCondiciones(condiciones) {
+        const errorCondiciones = document.getElementById("errorCondiciones");
+        const valor = condiciones.checked;
+
+        if (!valor) {
+            condiciones.classList.add("resaltado");
+            errorCondiciones.innerText = "Debes aceptar las condiciones.";
+            return false;
+        }
+
+        condiciones.classList.remove("resaltado");
+        errorCondiciones.innerText = "";
         return true;
     }
 
@@ -77,6 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!validarNombre(nombre)) valido = false;
         if (!validarApellidos(apellidos)) valido = false;
         if (!validarEmail(email)) valido = false;
+        if (!validarRepetirEmail(repetirEmail)) valido = false;
+        if (!validarPassword(password)) valido = false;
+        if (!validarRepetirPassword(repetirPassword)) valido = false;
+        if (!validarCondiciones(condiciones)) valido = false;
 
         return valido;
     }
@@ -104,6 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
         nombre.addEventListener("blur", () => validarNombre(nombre));
         apellidos.addEventListener("blur", () => validarApellidos(apellidos));
         email.addEventListener("blur", () => validarEmail(email));
+        repetirEmail.addEventListener("blur", () => validarRepetirEmail(repetirEmail));
+        password.addEventListener("blur", () => validarPassword(password));
+        repetirPassword.addEventListener("blur", () => validarRepetirPassword(repetirPassword));
+        condiciones.addEventListener("blur", () => validarCondiciones(condiciones));
 
         // Validación del botón
         form.addEventListener("submit", (e) => {
