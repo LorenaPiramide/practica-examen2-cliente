@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Virtual</title>
+    <script type="module" src="src/index.js"></script>
 </head>
 <body>
     <header id="loginBox">
             <input type="text" value="" id="username" placeholder="username">
             <input type="password" value="" id="password" placeholder="password">
             <button id="btnLogin">Login</button>
+            <!-- Añadido -->
+            <span id="errorLogin"></span>
             ¿No tienes cuenta? Regístrate <a href="./registro.html">aquí</a>
     </header>
     <main>
@@ -19,6 +22,5 @@
             <div id="listadoDisponibles"></div>
         </section>
     </main>
-    
 </body>
 </html>
