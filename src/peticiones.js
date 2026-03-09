@@ -28,9 +28,9 @@ export function obtenerLibrosDisponibles() {
 }
 
 export function obtenerLibrosPorEmail(id_user) {
-    return fetch(`${URL_SERVER}libros?id_user=${id_user}`)
+    return fetch(`${URL_SERVER}libros?id_prestamo=${id_user}`)
         .then(res => {
-            if (!res.ok) throw new Erro("Error al obtener los libros del usuario.");
+            if (!res.ok) throw new Error("Error al obtener los libros del usuario.");
             return res.json();
         })
 }
