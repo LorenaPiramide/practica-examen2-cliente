@@ -1,18 +1,35 @@
 const URL_SERVER = `http://100.49.134.235:3000/`;
 
-export function login(email) {
+// export function login(email, password) {
+//     return fetch(`${URL_SERVER}usuarios?email=${encodeURIComponent(email)}&password=${encodeURI(password)}`)
+//         .then(res => {
+//             if (!res.ok) throw new Error("Error en el login.");
+//             // return res.json();
+//             return res.json().then(data => {
+//                 if (!Array.isArray(data) || data.length === 0) {
+//                     throw new Error("Usuario no encontrado.");
+//                 }
+//                 return data;
+//             }).then();
+//         })
+// }
+
+export function login(email, password) {
     return fetch(`${URL_SERVER}usuarios?email=${encodeURIComponent(email)}`)
         .then(res => {
-            // console.log(res.body)
-            // const resJson = res.json();
-            // // if (resJson.length() < 1) throw new Error("Error en el login.");
-            // if (Array.isArray(res.body)) {
-            //     console.log("The array is empty");
-            // }
-            // console.log(res);
-            if (!res.ok) throw new Error("Error en el login.");
+            if (!res.ok) throw new Error("Error de conexión.");
             return res.json();
         })
+        .then(datos => {
+            if (!Array.isArray(datos) || datos.length === 0) {
+                throw new Error("Usuario no encontrado.");
+            }
+            const dato = datos[0];
+            if (dato.password !== password) {
+                throw new Error("Contraseña incorrecta.");
+            }
+            return dato;
+        });
 }
 
 export function registro(usuario) {

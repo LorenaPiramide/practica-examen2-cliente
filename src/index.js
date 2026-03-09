@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         login(email, password)
             .then(user => {
                 sessionStorage.setItem("usuario", JSON.stringify(user));
-                window.location.href = "tareas.html";
+                window.location.href = "libros.html";
             })
             .catch(err => {
                 console.error(err);
