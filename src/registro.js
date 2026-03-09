@@ -34,6 +34,25 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 
+    function validarApellidos(apellidos) {
+        const errorApellidos = document.getElementById("errorApellidos");
+        const valor = apellidos.value;
+
+        if (valor.length < 3) {
+            apellidos.classList.add("resaltado");
+            errorApellidos.innerText = "El apellido debe tener al menos 3 letras.";
+            return false;
+        } else if (valor[0] !== valor[0].toUpperCase()) {
+            apellidos.classList.add("resaltado");
+            errorApellidos.innerText = "El apellido debe empezar por mayúscula."
+            return false;
+        }
+
+        apellidos.classList.remove("resaltado");
+        errorApellidos.innerText = "";
+        return true;
+    }
+
     function validarEmail(email) {
         const errorEmail = document.getElementById("errorEmail");
         const valor = email.value;
@@ -56,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let valido = true;
 
         if (!validarNombre(nombre)) valido = false;
+        if (!validarApellidos(apellidos)) valido = false;
         if (!validarEmail(email)) valido = false;
 
         return valido;
@@ -82,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Usamos el evento blur, para salir del campo
     function inicializarEventos() {
         nombre.addEventListener("blur", () => validarNombre(nombre));
+        apellidos.addEventListener("blur", () => validarApellidos(apellidos));
         email.addEventListener("blur", () => validarEmail(email));
 
         // Validación del botón
