@@ -3,6 +3,13 @@ const URL_SERVER = `http://100.49.134.235:3000/`;
 export function login(email) {
     return fetch(`${URL_SERVER}usuarios?email=${encodeURIComponent(email)}`)
         .then(res => {
+            // console.log(res.body)
+            // const resJson = res.json();
+            // // if (resJson.length() < 1) throw new Error("Error en el login.");
+            // if (Array.isArray(res.body)) {
+            //     console.log("The array is empty");
+            // }
+            // console.log(res);
             if (!res.ok) throw new Error("Error en el login.");
             return res.json();
         })

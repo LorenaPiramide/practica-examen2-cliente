@@ -16,12 +16,27 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Si el usuario y password son correctos, guarda el usuario en sessionstorage
+        // try {
+        //     // Si el usuario y password son correctos, guarda el usuario en sessionstorage
+        //     login(email, password)
+        //         .then(usuario => {
+        //             sessionStorage.setItem("usuario", JSON.stringify(usuario));
+        //             window.location.href = "libros.html";
+        //         })
+        // } catch {
+        //     error.textContent = "Login incorrecto.";
+        // }
+
         login(email, password)
-            .then(usuario => {
-                sessionStorage.setItem("usuario", JSON.stringify(usuario));
-                window.location.href = "libros.html";
+            .then(user => {
+                sessionStorage.setItem("usuario", JSON.stringify(user));
+                window.location.href = "tareas.html";
             })
+            .catch(err => {
+                console.error(err);
+                error.textContent = err.message;
+            });
+        
     })
 
     const listadoDisponibles = document.getElementById("listadoDisponibles");
