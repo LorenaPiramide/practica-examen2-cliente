@@ -3,6 +3,9 @@ import { obtenerLibrosDisponibles, obtenerLibrosPorUsuario, prestarLibro, devolv
 document.addEventListener("DOMContentLoaded", () => {
 
     const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+    if (!usuario) window.location.href = "index.html";
+
     const btnLogout = document.getElementById("btnLogout");
     const listadoPrestamos = document.getElementById("listadoPrestamos")
     const listadosDisponibles = document.getElementById("listadoDisponibles");

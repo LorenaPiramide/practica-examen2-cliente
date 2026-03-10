@@ -22,16 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (valor.length < 3) {
             nombre.classList.add("resaltado");
-            errorNombre.innerText = "El nombre debe tener al menos 3 letras.";
+            errorNombre.textContent = "El nombre debe tener al menos 3 letras.";
             return false;
         } else if (valor[0] !== valor[0].toUpperCase()) {
             nombre.classList.add("resaltado");
-            errorNombre.innerText = "El nombre debe empezar por mayúscula.";
+            errorNombre.textContent = "El nombre debe empezar por mayúscula.";
             return false;
         }
 
         nombre.classList.remove("resaltado");
-        errorNombre.innerText = "";
+        errorNombre.textContent = "";
         return true;
     }
 
@@ -170,7 +170,10 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         registro(body)
-            .then(() => window.location.href = "libros.html")
+            .then(user => {
+                localStorage.setItem("usuario", JSON.stringify(user))
+                window.location.href = "libros.html"
+            })
             .catch(() => errorRegistro.innerText = "No se ha podido realizar el registro.");
     }
 
