@@ -171,7 +171,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         registro(body)
             .then(user => {
-                localStorage.setItem("usuario", JSON.stringify(user))
+                const usuario = {
+                    id: user.id,
+                    nombre: user.nombre,
+                    apellidos: user.apellidos,
+                    email: user.email
+                }
+                sessionStorage.setItem("usuario", JSON.stringify(usuario));
                 window.location.href = "libros.html"
             })
             .catch(() => errorRegistro.innerText = "No se ha podido realizar el registro.");
