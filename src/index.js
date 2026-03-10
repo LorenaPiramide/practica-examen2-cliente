@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     obtenerLibrosDisponibles()
         .then(libros => {
             // Limpiamos los libros disponibles por si había otros antes.
-            listadoDisponibles.innerHTML = "";
+            // listadoDisponibles.innerHTML = "";
 
             if (libros.length === 0) {
                 listadoDisponibles.textContent = "No hay libros disponibles.";

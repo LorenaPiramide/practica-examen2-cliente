@@ -1,19 +1,5 @@
 const URL_SERVER = `http://100.49.134.235:3000/`;
 
-// export function login(email, password) {
-//     return fetch(`${URL_SERVER}usuarios?email=${encodeURIComponent(email)}&password=${encodeURI(password)}`)
-//         .then(res => {
-//             if (!res.ok) throw new Error("Error en el login.");
-//             // return res.json();
-//             return res.json().then(data => {
-//                 if (!Array.isArray(data) || data.length === 0) {
-//                     throw new Error("Usuario no encontrado.");
-//                 }
-//                 return data;
-//             }).then();
-//         })
-// }
-
 export function login(email, password) {
     return fetch(`${URL_SERVER}usuarios?email=${encodeURIComponent(email)}`)
         .then(res => {
@@ -51,7 +37,7 @@ export function obtenerLibrosDisponibles() {
         })
 }
 
-export function obtenerLibrosPorEmail(id_user) {
+export function obtenerLibrosPorUsuario(id_user) {
     return fetch(`${URL_SERVER}libros?id_prestamo=${id_user}`)
         .then(res => {
             if (!res.ok) throw new Error("Error al obtener los libros del usuario.");

@@ -4,6 +4,7 @@ import { registro } from "./peticiones.js";
 document.addEventListener("DOMContentLoaded", () => {
     // Aquí dentro, la validación
     const form = document.getElementById("formRegistro");
+    const errorRegistro = document.getElementById("errorRegistro")
 
     const nombre = document.getElementById("nombre");
     const apellidos = document.getElementById("apellidos");
@@ -169,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         registro(body)
-            .then(() => window.location.href = "index.html")
+            .then(() => window.location.href = "libros.html")
             .catch(() => errorRegistro.innerText = "No se ha podido realizar el registro.");
     }
 
@@ -198,8 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    // Conectamos el formulario con la lógica de lo anterior.
-    // Aquí comprueba el blur, y si todo ha salido bien, nos lleva a enviarRegistro
     inicializarEventos();
 
 })
