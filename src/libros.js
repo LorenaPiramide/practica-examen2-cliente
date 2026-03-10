@@ -1,4 +1,4 @@
-import { obtenerLibrosDisponibles, obtenerLibrosPorUsuario } from "./peticiones.js";
+import { obtenerLibrosDisponibles, obtenerLibrosPorUsuario, prestarLibro, devolverLibro } from "./peticiones.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -18,12 +18,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         libros.forEach(libro => {
             const li = document.createElement("li");
-            li.textContent = `${libro.titulo} - Autor: ${libro.autor}`;
+            li.textContent = `${libro.titulo} - Autor: ${libro.autor} - Fecha de devolución: ${libro.fecha_devolucion}`;
+
+            const btnDevolver = document.createElement("button");
+            btnDevolver.textContent = "Devolver";
+
+            btnDevolver.addEventListener("click", () => {
+                devolverLibro(libro.id)
+                .then(() => window.location.href = "libros.html");
+            })
+
+            li.appendChild(btnDevolver);
 
             ul.appendChild(li);
         });
 
-        listadoPrestamos.appendChild(li);
+        listadoPrestamos.appendChild(ul);
     })
 
     obtenerLibrosDisponibles()
@@ -39,10 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Recorremos todos los libros
         libros.forEach(libro => {
-
             const li = document.createElement("li");
             li.textContent = `${libro.titulo} - Autor: ${libro.autor}`;
             
+            const btnPrestar = document.createElement("button");
+            btnPrestar.textContent = "Prestar";
+
+            btnPrestar.addEventListener("click", () => {
+                prestarLibro(usuario.id, libro.id)
+                .then(() => window.location.href = "libros.html");
+            })
+
+            li.appendChild(btnPrestar);
+
             ul.appendChild(li);
         });
 
